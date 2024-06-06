@@ -7,11 +7,11 @@
  */
 void binary_tree_postorder(binary_tree_t *tree, void (*func)(int))
 {
-	if (tree != NULL && func != NULL)
+	if (tree && func)
 	{
 		binary_tree_postorder(tree->left, func);
 		binary_tree_postorder(tree->right, func);
-		(*func)(tree->n);
+		func(tree->n);
 	}
 }
 
