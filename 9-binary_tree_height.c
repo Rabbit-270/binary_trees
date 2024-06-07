@@ -1,48 +1,17 @@
 #include "binary_trees.h"
 /**
- * count_levels - calculates the depth of a node.
- * @node: node to calculate for.
- * Return: 1 or 1+ number.
- */
-size_t count_levels(binary_tree_t *node)
-{
-	if (node == NULL)
-	{
-		return (0);
-	}
-	size_t right;
-	size_t left;
-
-	right = 1 + count_levels(node->right);
-	left = 1 + count_levels(node->left);
-	if (right < left)
-	{
-		return (left);
-	}
-	if (right > left)
-	{
-		return (right);
-	}
-	return (right);
-}
-/**
  * binary_tree_height - calculates the height of a given tree.
  * @tree: a pointer of the root of the tree
  * Return: 0 or actual height of tree
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	size_t left_height = count_levels(tree->left);
-	size_t right_height = count_levels(tree->right);
+	size_t left = 0;
+	size_t right = 0;
 
-	if (left_height > right_height)
-	{
-		return (left_height);
-	}
-	else if (right_height > left_height)
-	{
-		return (right_height);
-	}
-	return (right_height);
+	left = tree->left ? 1 + binary_tree_height(tree->left) : 0;
+	right = tree->right ? 1 + binary_tree_height(tree->right) : 0;
+
+	return ((left > right) ? left : right);
 }
 
