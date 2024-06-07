@@ -4,14 +4,14 @@
  * @node: node to calculate for.
  * Return: 1 or 1+ number.
  */
-int count_levels(binary_tree_t *node)
+size_t count_levels(binary_tree_t *node)
 {
 	if (node == NULL)
 	{
 		return (0);
 	}
-	int right;
-	int left;
+	size_t right;
+	size_t left;
 
 	right = 1 + count_levels(node->right);
 	left = 1 + count_levels(node->left);
@@ -32,8 +32,8 @@ int count_levels(binary_tree_t *node)
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	int left_height = count_levels(tree->left);
-	int right_height = count_levels(tree->right);
+	size_t left_height = count_levels(tree->left);
+	size_t right_height = count_levels(tree->right);
 
 	if (left_height > right_height)
 	{
